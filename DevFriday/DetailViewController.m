@@ -109,9 +109,21 @@
     // will take care of changing the values gradually
     // over the course of the animation duration.
     [UIView animateWithDuration:1.0f animations:^{
+        // many animations can be done by just applying
+        // some geometric transformations on the UI elements.
+        // all UIView subclasses inherit the "transform"
+        // property that takes a transformation matrix.
+        // Convenience functions exist to produce common
+        // matrices, e. g. rotation and scaling:
         CGAffineTransform rotation = CGAffineTransformMakeRotation(M_PI); // 180 degress
         CGAffineTransform scaling = CGAffineTransformMakeScale(2.0f, 2.0f); // 2xWidth and Height
         self.detailDescriptionLabel.transform = CGAffineTransformConcat(rotation, scaling);
+    } completion:^(BOOL finished) {
+        // reset the transformation property to the predefined
+        // "identity transform". In effect this means that all
+        // prior changes to the transform are reverted and the
+        // element is displayed as before.
+        self.detailDescriptionLabel.transform = CGAffineTransformIdentity;
     }];
 }
 
