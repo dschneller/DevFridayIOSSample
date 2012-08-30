@@ -18,4 +18,8 @@
 // InterfaceBuilder Outlet. This provides programmatic access to the label that
 // was placed on this controller's view and connected by drag and drop.
 @property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
+
+- (IBAction)rotateLabel:(id)sender;
+
+
 @end

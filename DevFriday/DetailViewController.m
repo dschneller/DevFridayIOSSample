@@ -77,6 +77,7 @@
     [self configureView];
 }
 
+#pragma mark - Interface Rotation
 // same rotation callbacks as in the MasterViewController
 - (NSUInteger)supportedInterfaceOrientations
 {
@@ -86,6 +87,32 @@
 - (BOOL)shouldAutorotate
 {
     return YES;
+}
+
+#pragma mark - Label Animation
+
+// The button in the storyboard will send this message
+// when it is tapped and pass itself along as the sender.
+- (IBAction)rotateLabel:(id)sender {
+    // we don't care about who sent the message, we
+    // just call the animateTheLabel method
+    [self animateTheLabel];
+}
+
+- (void)animateTheLabel
+{
+    // Tell the view to begin an animation. It is
+    // to take 1.0 seconds to complete. The animations
+    // block can be used to change any animatable
+    // property of any element on the UI. Programmatically
+    // the changes happen immediately, but the system
+    // will take care of changing the values gradually
+    // over the course of the animation duration.
+    [UIView animateWithDuration:1.0f animations:^{
+        CGAffineTransform rotation = CGAffineTransformMakeRotation(M_PI); // 180 degress
+        CGAffineTransform scaling = CGAffineTransformMakeScale(2.0f, 2.0f); // 2xWidth and Height
+        self.detailDescriptionLabel.transform = CGAffineTransformConcat(rotation, scaling);
+    }];
 }
 
 @end
