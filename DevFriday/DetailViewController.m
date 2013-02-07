@@ -126,7 +126,9 @@
         
         // to prevent it just "snapping" back into place
         // we nest another animation block.
-        [UIView animateWithDuration:1.0f delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+        [UIView animateWithDuration:1.0f
+                              delay:0.0f
+                            options:UIViewAnimationOptionBeginFromCurrentState animations:^{
             CGAffineTransform rotation = CGAffineTransformMakeRotation(0.0001f); // 180 degress
             CGAffineTransform scaling = CGAffineTransformMakeScale(1.0f, 1.0f); // original with/height
             self.detailDescriptionLabel.transform = CGAffineTransformConcat(rotation, scaling);
